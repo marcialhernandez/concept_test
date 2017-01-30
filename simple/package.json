@@ -1,0 +1,17 @@
+{
+  "name": "simple",
+  "version": "1.0.0",
+  "description": "concept test",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "marcialHS",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.16.0",
+    "ejs": "2.5.5",
+    "express": "4.14.1",
+    "mongodb": "2.2.22"
+  }
+}

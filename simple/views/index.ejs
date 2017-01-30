@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Purchase History</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+	<nav class="navbar navbar-inverse">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="#">Purchase History List</a>
+      </div>
+
+	</nav>
+
+	<div class="jumbotron">
+  		<h1>Purchase History List</h1>
+  		<p>Add item to your recent purchase history:</p>
+  		<div class="row">
+  		<div class="col-sm-6">
+  		<form action="/add" method="POST" name="purchaseform">
+            <div class="form-group">
+              <label for="inputName">Item Name:</label>
+              <input type="text" placeholder="Item" class="form-control" name="item">
+            </div>
+
+            <div>
+              <label for="inputCost">Item Cost:</label>
+              <div class="input-group">
+                <div class="input-group-addon">$</div>                   
+                <input type="number" class="form-control" id="inputCost" name="cost" placeholder="Cost">
+                <div class="input-group-addon">.00</div>
+              </div>
+            </div>
+
+            <div>
+               <label for="inputCost">Date Purchased:</label>
+               <input type="date" name="date" placeholder="Date" class="form-control">
+            </div>
+             
+            <div>
+            <button type="submit" class="btn btn-success">Add Record</button>
+            </div>
+   		</form>
+   		</div>
+   		<div class="col-sm-6 text-center">
+   			<img src="images/purHistoryLogo.png">
+   		</div>
+   		</div>
+  	</div>
+		
+    		<div class="panel panel-primary">
+   			<div class="panel-heading text-center"><h4>Purchase History List</h4></div>
+  			<table class="table table-striped table-hover table-bordered">
+  				<tr class="info">
+    				<th>Entry</th>
+  					<th>Item Name</th>
+  					<th>Cost</th>
+  					<th>Date</th>
+  					<th>Delete?</th>
+  				</tr>
+                                <%# Here is the benefit of EJS over HTML.  We cycle through the data in our DB and display and delete results dynamically %>
+  				<% for(var i=0; i<purchaseDB.length; i++) { %>
+  				<tr>
+    				<td><%= (i + 1 )%></td>
+  					<td><%= purchaseDB[i].item %></td>
+  					<td>$<%= purchaseDB[i].cost %>.00</td>
+  					<td><%= purchaseDB[i].date %></td>
+  					<td><a href="/destroy/<%= purchaseDB[i]._id %>" class="btn btn-danger btn-sm" title="Delete">Delete</a></td>
+  				</tr>
+  				<% } %>
+  			</table>
+  		</div>
+  	
+</div>	
+</body>
+</html>
